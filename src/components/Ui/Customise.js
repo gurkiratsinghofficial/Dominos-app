@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import pizzaImage from "../../images/pizza.png";
-import { Card } from "react-bootstrap";
-import CustomCheckbox from "./custom components/CustomCheckbox";
-import CustomRadio from "./custom components/CustomRadio";
+import MyCheckbox from "./myComponents/MyCheckbox";
+import MyRadio from "./myComponents/MyRadio";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
@@ -13,19 +11,30 @@ import {
   selectVegTopping,
 } from "../../features/Pizza/PizzaSlice";
 import Strings from "../../constants/constants";
+import CustomiseHeader from "./CustomiseHeader";
+import TotalBar from "./TotalBar";
 /**
  * @description:JSX for Customise Modal
  */
 function Customise() {
+  /**fetch Pizza details that is to be displayed in modal */
+  const Modalpizza = useSelector(selectModalPizza);
+  /**select state of modal :open or closed */
+  const modal = useSelector(selectModal);
+  /**select veg toppings from state */
+  const vegTopping = useSelector(selectVegTopping);
+  /**select non veg toppings from state */
+  const nonVegTopping = useSelector(selectNonVegTopping);
+
+  const dispatch = useDispatch();
+
   const [cheesePrice] = useState(0);
   const [modalPrice, setModalPrice] = useState(0);
-  const Modalpizza = useSelector(selectModalPizza);
   const [size, setSize] = useState("small");
   const [crust, setCrust] = useState("FreshPan");
   const [cheese, setCheese] = useState(false);
   const [veg, setVeg] = useState([]);
   const [nonVeg, setNonVeg] = useState([]);
-
   const [obj, setObj] = useState({
     size: 0,
     crust: 0,
@@ -46,11 +55,7 @@ function Customise() {
     toppings: veg.concat(nonVeg),
     cheese: cheese,
   };
-
-  const modal = useSelector(selectModal);
-  const dispatch = useDispatch();
-  const vegTopping = useSelector(selectVegTopping);
-  const nonVegTopping = useSelector(selectNonVegTopping);
+  /**Sets values for veg toppings */
   const vegFunc = (value, checked) => {
     const top = [...veg];
     if (checked) {
@@ -82,6 +87,7 @@ function Customise() {
       }
     }
   };
+  /**sets values for nonveg toppings */
   const nonVegFunc = (value, checked) => {
     const top = [...nonVeg];
     if (checked) {
@@ -113,7 +119,7 @@ function Customise() {
       }
     }
   };
-
+  /**sets value if cheese is selected or not */
   const cheeseFunc = (value, checked) => {
     if (checked) {
       if (size === "small") {
@@ -142,6 +148,7 @@ function Customise() {
       return;
     }
   };
+  /**submit handler */
   const submit = (Modalpizza) => {
     dispatch(
       addToCart({
@@ -155,19 +162,19 @@ function Customise() {
     setModalPrice(0);
     dispatch(openModal());
   };
+  /**sets the size of pizza */
   const setDataSize = (param, price) => {
     setSize(param);
     setObj((old) => {
       return { ...old, size: price };
     });
-    // setModalPrice(price);
   };
+  /**sets the crust of pizza */
   const setDataCrust = (param, price) => {
     setCrust(param);
     setObj((old) => {
       return { ...old, crust: price };
     });
-    // setModalPrice(modalPrice + price);
   };
   return (
     <div>
@@ -182,66 +189,43 @@ function Customise() {
             >
               X
             </button>
-            <Card.Img variant="top" src={pizzaImage} />
-            <Card.Body>
-              <Card.Title>₹{modalPrice}</Card.Title>
-              <Card.Title>{Modalpizza.name}</Card.Title>
-              <Card.Text>{Modalpizza.description}</Card.Text>
-            </Card.Body>
-            <Card.Body>
-              <CustomRadio
-                Modalpizza={Modalpizza}
-                setDataSize={setDataSize}
-                title="Size"
-              />
-            </Card.Body>
-            <Card.Body>
-              <CustomRadio
-                Modalpizza={Modalpizza}
-                setDataCrust={setDataCrust}
-                title="Crust"
-              />
-            </Card.Body>
-            <Card.Body>
-              <CustomCheckbox
-                setFunc={cheeseFunc}
-                Topping={[{ name: "cheese" }]}
-                title={Strings.CHEESE}
-              />
-            </Card.Body>
-            <Card.Body>
-              <CustomCheckbox
-                setFunc={vegFunc}
-                Topping={vegTopping}
-                title={Strings.VEG_TOP}
-              />
-            </Card.Body>
-            <Card.Body>
-              <CustomCheckbox
-                setFunc={nonVegFunc}
-                Topping={nonVegTopping}
-                title={Strings.NON_VEG_TOP}
-              />
-            </Card.Body>
+            <CustomiseHeader modalPrice={modalPrice} Modalpizza={Modalpizza} />
+            <MyRadio
+              Modalpizza={Modalpizza}
+              setDataSize={setDataSize}
+              title="Size"
+            />
+            <MyRadio
+              Modalpizza={Modalpizza}
+              setDataCrust={setDataCrust}
+              title="Crust"
+            />
+            <MyCheckbox
+              setFunc={cheeseFunc}
+              Topping={[{ name: "cheese" }]}
+              title={Strings.CHEESE}
+            />
+            <MyCheckbox
+              setFunc={vegFunc}
+              Topping={vegTopping}
+              title={Strings.VEG_TOP}
+            />
+            <MyCheckbox
+              setFunc={nonVegFunc}
+              Topping={nonVegTopping}
+              title={Strings.NON_VEG_TOP}
+            />
 
-            <div className="green-customise-bar">
-              <div className="green-cart-customise-button">
-                <button
-                  onClick={() => {
-                    submit(Modalpizza);
-                  }}
-                  style={{ position: "relative" }}
-                >
-                  Add to cart
-                </button>
-                <span className="customise-green-price">₹{modalPrice}</span>
-              </div>
-            </div>
+            <TotalBar
+              submit={submit}
+              modalPrice={modalPrice}
+              Modalpizza={Modalpizza}
+            />
           </div>
           <div
             className="close-div"
             onClick={() => {
-              dispatch(openModal());
+              dispatch(openModal()); /** Grey overlay for closing the modal */
             }}
           ></div>
         </>

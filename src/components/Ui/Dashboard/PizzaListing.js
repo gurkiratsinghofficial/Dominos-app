@@ -2,11 +2,12 @@ import React from "react";
 import { CardDeck } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { selectPizza } from "../../../features/Pizza/PizzaSlice";
-import PizzaCard from "./../Cards/PizzaCard";
+import PizzaCard from "../Cards/PizzaCard";
 /**
  * @description:Container component to render Menu card
  */
 function Menu() {
+  /**select all the pizzas' in the state */
   const pizza = useSelector(selectPizza);
   return (
     <div className="menu-div">

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { Card, Button } from "react-bootstrap";
-import pizzaImage from "../../../images/pizza.png";
-import { MySelect } from "../../../helpers/inputs";
+import React from "react";
+import { Card } from "react-bootstrap";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { openModal, addToCart } from "../../../features/Pizza/PizzaSlice";
-import arrow from "../../../images/arrow.png";
+import { addToCart } from "../../../features/Pizza/PizzaSlice";
 import Strings from "../../../constants/constants";
+import PizzaCardHeader from "./PizzaCardComponents/PizzaCardHeader";
+import PizzaCardOptions from "./PizzaCardComponents/PizzaCardOptions";
+import PizzaCardButton from "./PizzaCardComponents/PizzaCardButton";
 /**
  * @description:JSX for card to be displayed inside menu
  * @param {object} props
@@ -25,23 +25,7 @@ function PizzaCard(props) {
           boxShadow: "3px 2px 4px grey",
         }}
       >
-        <Card.Img variant="top" src={pizzaImage} />
-        <Card.ImgOverlay>
-          <div className="pizza-card-overlay">
-            <h5 className="pizza-card-price"></h5>
-            <Button
-              variant="light"
-              size="sm"
-              style={{ height: "1%", padding: "0" }}
-              onClick={() => {
-                dispatch(openModal(item));
-              }}
-            >
-              Customise
-              <img width="15" height="15" alt="arrow" src={arrow}></img>
-            </Button>{" "}
-          </div>
-        </Card.ImgOverlay>
+        <PizzaCardHeader item={item} />
         <div alt="pizza-img" className="pizza-card-body">
           <Card.Title>{item.name}</Card.Title>
           <p>
@@ -62,36 +46,8 @@ function PizzaCard(props) {
           >
             <>
               <Form>
-                <div className="pizza-card-options">
-                  <MySelect name="size">
-                    {item.sizes.map((size, index) => (
-                      <option key={index} value={size.size} price={size.price}>
-                        {size.size}-{size.price}
-                      </option>
-                    ))}
-                  </MySelect>
-                  <MySelect style={{ width: "7vw" }} name="crust">
-                    {item.crusts.map((crust, index) => (
-                      <option
-                        key={index}
-                        value={crust.crust}
-                        price={crust.price}
-                      >
-                        {crust.crust}-{crust.price}
-                      </option>
-                    ))}
-                  </MySelect>
-                </div>
-                <div className="pizza-card-add-div">
-                  <Button
-                    size="sm"
-                    className="pizza-card-add"
-                    variant="outline-success"
-                    type="submit"
-                  >
-                    {Strings.ADD_TO_CART}
-                  </Button>
-                </div>
+                <PizzaCardOptions item={item} />
+                <PizzaCardButton />
               </Form>
             </>
           </Formik>

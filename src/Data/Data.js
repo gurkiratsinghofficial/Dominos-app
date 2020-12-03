@@ -1,4 +1,5 @@
 /**Initial State data */
+import pizzaImage from "../images/pizza.png";
 export const Data = {
   vegTopping: [
     {
@@ -101,12 +102,12 @@ export const Data = {
       name: "Margherita",
       description: "Classic delight with 100% real mozzarella cheese",
       price: 350,
-      inCart: false,
       size: "",
       crust: "",
       count: 0,
       total: 0,
       toppings: undefined,
+      imageSRC: pizzaImage,
     },
     {
       id: "2",
@@ -124,12 +125,12 @@ export const Data = {
       description:
         "Delightful combination of onion, capsicum, tomato & grilled mushroom",
       price: 250,
-      inCart: false,
       size: "",
       crust: "",
       count: 0,
       total: 0,
       toppings: undefined,
+      imageSRC: pizzaImage,
     },
     {
       id: "3",
@@ -147,12 +148,12 @@ export const Data = {
       description:
         "Flavorful trio of juicy paneer, crisp capsicum with spicy red paprika",
       price: 250,
-      inCart: false,
       size: "",
       crust: "",
       count: 0,
       total: 0,
       toppings: undefined,
+      imageSRC: pizzaImage,
     },
   ],
   cart: [],

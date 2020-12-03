@@ -247,3 +247,6 @@
 .delete-bin {
   height: 16px;
 }
+.total-bar-button {
+  position: relative;
+}

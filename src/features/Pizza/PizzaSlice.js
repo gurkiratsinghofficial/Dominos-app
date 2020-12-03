@@ -27,7 +27,6 @@ const PizzaSlice = createSlice({
         tempPizza3.find((item) => item.id === action.payload.item.id)
       );
       const pizza = tempPizza3[index];
-      pizza.inCart = true;
       pizza.count = 1;
       pizza.toppings = action.payload.values.toppings;
       pizza.size = action.payload.values.size;
@@ -104,7 +103,6 @@ const PizzaSlice = createSlice({
       pizza.count = pizza.count - 1;
       if (pizza.count === 0) {
         tempCart2.splice(index, 1);
-        pizza.inCart = false;
         state.cart = [...tempCart2];
       } else {
         pizza.total = pizza.count * pizza.price;

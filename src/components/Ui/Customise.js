@@ -218,6 +218,7 @@ function Customise() {
                 >
                   Add to cart
                 </button>
+                <span className="customise-green-price">₹{modalPrice}</span>
               </div>
             </div>
           </div>

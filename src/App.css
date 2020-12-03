@@ -179,6 +179,12 @@
   position: absolute;
   right: 0;
 }
+.customise-green-price {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  padding-left: 2%;
+}
 /* **********CUSTOMISE MENU END******* */
 
 /* **********CART START************ */

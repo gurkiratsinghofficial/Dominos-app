@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import MyCheckbox from "./myComponents/MyCheckbox";
-import MyRadio from "./myComponents/MyRadio";
+import MyCheckbox from "../../Ui/myComponents/MyCheckbox";
+import MyRadio from "../../Ui/myComponents/MyRadio";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
@@ -9,8 +9,8 @@ import {
   selectModalPizza,
   selectNonVegTopping,
   selectVegTopping,
-} from "../../features/Pizza/PizzaSlice";
-import Strings from "../../constants/constants";
+} from "../../../features/Pizza/PizzaSlice";
+import Strings from "../../../constants/constants";
 import CustomiseHeader from "./CustomiseHeader";
 import TotalBar from "./TotalBar";
 /**

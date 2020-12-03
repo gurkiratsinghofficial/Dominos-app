@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import pizzaImage from "../../../images/farmhouse.webp";
+import deleteBin from "../../../images/delete.png";
 import { increment, decrement } from "../../../features/Pizza/PizzaSlice";
 /**
  * @description:JSX for card to be displayed inside cart
@@ -32,7 +33,11 @@ function CartCard({ pizza }) {
           dispatch(decrement(pizza.id));
         }}
       >
-        {pizza.count < 2 ? "D" : "-"}
+        {pizza.count < 2 ? (
+          <img className="delete-bin" src={deleteBin} alt="delete" />
+        ) : (
+          "-"
+        )}
       </button>
       <button>{pizza.count}</button>
       <button

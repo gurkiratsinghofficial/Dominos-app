@@ -1,0 +1,240 @@
+/* *******PIZZA CARD START********* */
+.pizza-card-div {
+  margin: 3% 0 0 0;
+}
+.pizza-card-options {
+  display: flex;
+  justify-content: space-between;
+}
+.pizza-card-select {
+  margin: 0 3% 0 3%;
+}
+.pizza-card-add-div {
+  text-align-last: end;
+  padding: 6% 0 0 0;
+}
+.pizza-card-image {
+  z-index: -2;
+}
+.pizza-card-overlay {
+  text-align-last: right;
+  margin-top: 31%;
+  display: flex;
+  justify-content: space-between;
+}
+.pizza-card-price {
+  color: white;
+  font-weight: bold;
+}
+.pizza-card-customise-button {
+  padding: 0;
+  height: 1%;
+  margin: 0;
+}
+.card-body {
+  z-index: 0;
+}
+.pizza-card-add {
+  margin-right: 4%;
+}
+.pizza-card-body {
+  padding: 2%;
+  z-index: 0;
+}
+/* *********PIZZA CARD END******** */
+
+/* ************CART CARD START******* */
+.card-cart-item-div {
+  display: flex;
+}
+.card-cart-div {
+  display: flex;
+  margin-bottom: 2%;
+}
+.card-cart-bottom-border {
+  padding-bottom: 2%;
+  border-bottom: 1px solid #bababa;
+}
+.bottom-description {
+  font-size: 11px;
+}
+.bottom-description-div {
+  display: flex;
+  justify-content: space-around;
+  font-size: 10px;
+}
+.cart-card-price {
+  padding-left: 5%;
+}
+/* *********CART CARD END******** */
+
+/* **********CUSTOMISE MENU START******* */
+.customise-div {
+  position: absolute;
+  top: 0;
+  background-color: white;
+  overflow-y: scroll;
+  height: 100vh;
+  width: 44vw;
+  box-shadow: 5px 10px 10px 10px #252525;
+}
+.close-div {
+  top: 0;
+  position: absolute;
+  background-color: rgba(36, 37, 37, 0.356);
+  height: 100vh;
+  width: 55vw;
+  right: 0;
+  z-index: 0;
+}
+[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+[type="radio"] + h3 {
+  cursor: pointer;
+}
+[type="radio"]:checked + h3 {
+  border: 2px solid cadetblue;
+  background-color: cadetblue;
+  color: white;
+  padding: 3px;
+}
+.customise-size-selector {
+  padding: 3px;
+}
+.customise-crust-selector {
+  padding: 3px;
+}
+.customise-size-div {
+  justify-content: space-evenly;
+  width: 100%;
+  display: flex;
+}
+.customise-crust-div {
+  justify-content: space-evenly;
+  width: 100%;
+  display: flex;
+}
+[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+[type="checkbox"] + h5 {
+  cursor: pointer;
+}
+[type="checkbox"]:checked + h5 {
+  border: 2px solid cadetblue;
+  background-color: cadetblue;
+  color: white;
+  padding: 0 10% 0 5%;
+}
+.customise-topping-selector {
+  font-size: 17px;
+  margin: 4%;
+}
+.customise-cheeze-div {
+  justify-content: space-evenly;
+  width: 100%;
+  display: flex;
+}
+.customise-cheeze-selector {
+  padding: 0 10% 0 10%;
+}
+.toppings-div {
+  display: flex;
+  overflow-x: scroll;
+  justify-content: space-between;
+}
+.customise-toppings-selector {
+  padding: 0 10% 0 10%;
+}
+.menu-div {
+  width: 70vw;
+  height: 100vh;
+  background-color: #e6e6e6;
+  padding-left: 3%;
+}
+.close-customise {
+  font-size: 33px;
+  cursor: pointer;
+  position: fixed;
+  right: 52.7vw;
+  border-radius: 0;
+  border: none;
+  z-index: 1;
+}
+.green-customise-bar {
+  width: 44vw;
+  height: 5vh;
+  background-color: green;
+  position: fixed;
+  bottom: 0;
+}
+.green-customise-bar-button {
+  position: absolute;
+  right: 0;
+}
+/* **********CUSTOMISE MENU END******* */
+
+/* **********CART START************ */
+.cart {
+  height: 60vh;
+  width: 22vw;
+  border: 1px solid black;
+  position: fixed;
+  left: 71vw;
+  top: 34vh;
+  padding: 1% 1% 0 1%;
+  overflow-y: scroll;
+}
+.cart-card-description {
+  font-size: 12px;
+  line-height: 11px;
+}
+.cart-card-right {
+  padding: 1%;
+}
+.total {
+  background-color: green;
+  position: fixed;
+  bottom: 0;
+  right: 6%;
+  height: 5vh;
+  width: 22.1vw;
+  bottom: 1%;
+  color: white;
+  font-weight: bolder;
+  font-size: 22px;
+  padding-left: 2%;
+  display: flex;
+  justify-content: space-between;
+}
+/* ***********CART END********** */
+
+/* ********SUB NAVBAR START******** */
+.navbar {
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  height: 6vh;
+  top: 0;
+  width: 100%;
+  box-shadow: 0px 24px 32px grey;
+  padding: 0;
+}
+.navbar a {
+  float: left;
+  display: block;
+  color: #bababa;
+  text-align: center;
+  text-decoration: none;
+  font-size: 17px;
+  text-decoration: none;
+  font-size: 13px;
+}
+
+/* *********SUB NAVBAR END******** */

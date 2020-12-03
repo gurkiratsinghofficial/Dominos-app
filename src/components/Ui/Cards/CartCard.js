@@ -22,7 +22,6 @@ function CartCard({ pizza }) {
           </div>
           <h6 className="bottom-description">
             <p>{pizza.cheese ? "extra cheese added" : null}</p>
-            {console.log(pizza.toppings)}
             {pizza.toppings ? "Toppings:" + pizza.toppings : null}
           </h6>
         </div>

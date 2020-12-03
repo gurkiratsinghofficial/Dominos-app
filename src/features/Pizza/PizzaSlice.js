@@ -38,7 +38,6 @@ const PizzaSlice = createSlice({
         pizza.price = pizza.sizes[1].price;
       } else if (pizza.size === Strings.LARGE) {
         pizza.price = pizza.sizes[2].price;
-        console.log(pizza.price);
       }
       if (pizza.crust === Strings.FRESHPAN)
         pizza.price = pizza.price + pizza.crusts[0].price;

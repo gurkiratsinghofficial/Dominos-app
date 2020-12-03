@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 /**
  * @description:Custom component for Size and Crust
@@ -6,13 +6,8 @@ import { Card } from "react-bootstrap";
  */
 function CustomRadio(props) {
   const { title, Modalpizza, setDataCrust, setDataSize } = props;
-  // const crustFunc = (e) => {
-  //   setCrust(e.target.value);
-  // };
-  // const sizeFunc = (e) => {
-  //   setData(e.target.value,);
-  // };
-  console.log(Modalpizza);
+  const [size, setSize] = useState("small");
+  const [crust, setCrust] = useState("FreshPan");
   if (title === "Size") {
     return (
       <div>
@@ -21,28 +16,16 @@ function CustomRadio(props) {
         <div className="customise-size-div">
           {Modalpizza.sizes.map((pizza, index) => (
             <label key={index}>
-              {console.log(index)}
-              {/* {index === 0 ? (
-                <input
-                  type="radio"
-                  name={title}
-                  value={pizza.size}
-                  onChange={(e) => {
-                    setDataSize(e.target.value, pizza.price);
-                  }}
-                  checked
-                />
-              ) : ( */}
               <input
                 type="radio"
                 name={title}
                 value={pizza.size}
                 onChange={(e) => {
+                  setSize(pizza.size);
                   setDataSize(e.target.value, pizza.price);
                 }}
+                checked={size === pizza.size}
               />
-              {/* )} */}
-
               <h3 className="customise-size-selector">{pizza.size}</h3>
               <label>{pizza.price}</label>
             </label>
@@ -63,8 +46,10 @@ function CustomRadio(props) {
                 name={title}
                 value={pizza.crust}
                 onChange={(e) => {
+                  setCrust(pizza.crust);
                   setDataCrust(e.target.value, pizza.price);
                 }}
+                checked={crust === pizza.crust}
               />
               <h3 className="customise-size-selector">{pizza.crust}</h3>
               <label>{pizza.price}</label>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import pizzaImage from "../../images/pizza.png";
 import { Card } from "react-bootstrap";
 import CustomCheckbox from "./custom components/CustomCheckbox";
@@ -17,13 +17,29 @@ import Strings from "../../constants/constants";
  * @description:JSX for Customise Modal
  */
 function Customise() {
-  const [cheesePrice, setCheesePrice] = useState(0);
+  const [cheesePrice] = useState(0);
   const [modalPrice, setModalPrice] = useState(0);
-  const [size, setSize] = useState();
-  const [crust, setCrust] = useState();
+  const Modalpizza = useSelector(selectModalPizza);
+  const [size, setSize] = useState("small");
+  const [crust, setCrust] = useState("FreshPan");
   const [cheese, setCheese] = useState(false);
   const [veg, setVeg] = useState([]);
   const [nonVeg, setNonVeg] = useState([]);
+
+  const [obj, setObj] = useState({
+    size: 0,
+    crust: 0,
+  });
+  useEffect(() => {
+    if (Modalpizza)
+      setObj({
+        size: Modalpizza.sizes[0].price,
+        crust: Modalpizza.crusts[0].price,
+      });
+  }, [Modalpizza]);
+  useEffect(() => {
+    setModalPrice(obj.size + obj.crust);
+  }, [obj]);
   const values = {
     size: size,
     crust: crust,
@@ -33,7 +49,6 @@ function Customise() {
 
   const modal = useSelector(selectModal);
   const dispatch = useDispatch();
-  const Modalpizza = useSelector(selectModalPizza);
   const vegTopping = useSelector(selectVegTopping);
   const nonVegTopping = useSelector(selectNonVegTopping);
   const vegFunc = (value, checked) => {
@@ -100,7 +115,6 @@ function Customise() {
   };
 
   const cheeseFunc = (value, checked) => {
-    console.log(checked, size);
     if (checked) {
       if (size === "small") {
         setModalPrice(modalPrice + 35);
@@ -115,7 +129,6 @@ function Customise() {
         setCheese(true);
         return;
       }
-      console.log(cheesePrice);
       setModalPrice(modalPrice + cheesePrice);
     } else {
       if (size === "small") {
@@ -143,15 +156,18 @@ function Customise() {
     dispatch(openModal());
   };
   const setDataSize = (param, price) => {
-    console.log(param, price);
     setSize(param);
-    setModalPrice(price);
+    setObj((old) => {
+      return { ...old, size: price };
+    });
+    // setModalPrice(price);
   };
   const setDataCrust = (param, price) => {
-    console.log(param, price);
     setCrust(param);
-    setModalPrice(modalPrice + price);
-    console.log(modalPrice);
+    setObj((old) => {
+      return { ...old, crust: price };
+    });
+    // setModalPrice(modalPrice + price);
   };
   return (
     <div>

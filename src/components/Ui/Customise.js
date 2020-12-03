@@ -139,6 +139,7 @@ function Customise() {
     );
     setNonVeg([]);
     setVeg([]);
+    setModalPrice(0);
     dispatch(openModal());
   };
   const setDataSize = (param, price) => {

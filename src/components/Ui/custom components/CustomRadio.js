@@ -21,6 +21,18 @@ function CustomRadio(props) {
         <div className="customise-size-div">
           {Modalpizza.sizes.map((pizza, index) => (
             <label key={index}>
+              {console.log(index)}
+              {/* {index === 0 ? (
+                <input
+                  type="radio"
+                  name={title}
+                  value={pizza.size}
+                  onChange={(e) => {
+                    setDataSize(e.target.value, pizza.price);
+                  }}
+                  checked
+                />
+              ) : ( */}
               <input
                 type="radio"
                 name={title}
@@ -29,6 +41,8 @@ function CustomRadio(props) {
                   setDataSize(e.target.value, pizza.price);
                 }}
               />
+              {/* )} */}
+
               <h3 className="customise-size-selector">{pizza.size}</h3>
               <label>{pizza.price}</label>
             </label>
